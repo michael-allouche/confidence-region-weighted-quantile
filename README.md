@@ -1,6 +1,15 @@
 # confidence-region-weighted-quantile
 Implementation of the paper **Confidence Regions for Weighted Quantiles** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
+<figure>
+  <img
+    src="imgs/dist_erros_a1-50_a1-90_scenario-1_side-left.jpg"
+    alt="Distribution errors" />
+  <figcaption>Distribution of the errors between the real quantiles and the estimated confidence
+bounds for $`K=2`$ with risk levels $`\alpha1=0.5`$ and $`\alpha1=0.9`$.
+</figcaption>
+</figure>
+
 ## Abstract
 Quantiles are fundamental tools in statistics and risk analysis. While asymptotic and finite-sample results for standard 
 empirical quantiles are well established, analogous results for weighted quantiles remain scarce. In this paper, we establish 
