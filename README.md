@@ -13,7 +13,7 @@ bounds for the weighted expected shortfall.
 Let $`(X,W)`$ be a random variable taking values in $`\mathbb R \times (0,+\infty)`$. {We assume that $`W`$ is positive and integrable: $`\mathbb E[W]<+\infty`$. 
 We are concerned with deriving a confidence region of a vector of  $`W`$-weighted quantile of $`X`$
 ```math
-q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k}
+q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k},
 ```
 for quantile levels $`\alpha_k\in (0,1)^K`$.
 
@@ -22,7 +22,7 @@ Consider simulated data based on the use of a bivariate Gumbel copula:
 ```math
     C(u, v) = \exp\left[-\left\{(\log 1/u)^\theta + (\log 1/v)^\theta\right\}^{1/\theta}\right], \quad (u,v)\in(0,1]^2,\quad \theta>0,
 ```
-where the two margins of $`X`$ and $`W`$ are chosen in `simulation/DICT_SCENARIOS`
+where the two margins of $`X`$ and $`W`$ are chosen in `simulation/DICT_SCENARIOS` (see Table 1)
 ```
 DICT_SCENARIOS = {
     1: [st.burr12(c=1/0.3, d=1), st.burr12(c=1/0.3, d=1)], 
@@ -30,7 +30,7 @@ DICT_SCENARIOS = {
     3: [st.norm(loc=0, scale=1), st.burr12(c=1/0.3, d=1)],
     4: [st.burr12(c=1/0.3, d=1), st.lognorm(s=0.5)],
     5: [st.laplace(loc=0, scale=1), st.lognorm(s=0.5)],
-    6: [st.norm(loc=0, scale=1), st.lognorm(s=0.5)],[iv_library_v2.py](../../../Kaiko/repos/prod-analytics/Derivatives/Prototypes/iv_library_v2.py)
+    6: [st.norm(loc=0, scale=1), st.lognorm(s=0.5)],
 }
 ```
 and where the dependence structure is modeled with a fixed $`\theta=2`$:
