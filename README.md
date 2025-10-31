@@ -3,9 +3,10 @@ Implementation of the paper **Confidence Regions for Weighted Quantiles** by Mic
 
 <figure>
   <img
+    align="center"
     src="imgs/dist_erros_a1-50_a1-90_scenario-1_side-left.jpg"
-    alt="Distribution errors" 
-    style="width: 70%"    
+    alt="Distribution errors"
+    style="width: 70%"
     />
   <figcaption>Distribution of the errors between the real quantiles and the estimated confidence
 bounds for K=2 risk levels 0.5 and 0.9 on simulated data. 
