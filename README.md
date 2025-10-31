@@ -1,16 +1,24 @@
-# confidence-interval-weighted-quantile
-Implementation of the paper Confidence Regions for Weighted Quantiles by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
+# confidence-region-weighted-quantile
+Implementation of the paper **Confidence Regions for Weighted Quantiles** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
 ## Abstract
 Quantiles are fundamental tools in statistics and risk analysis. While asymptotic and finite-sample results for standard 
 empirical quantiles are well established, analogous results for weighted quantiles remain scarce. In this paper, we establish a comprehensive asymptotic theory for weighted quantiles. We derive a multivariate central limit theorem for multiple perturbed weighted quantiles. This result yields, as corollaries, (i) a multivariate CLT for weighted empirical quantiles, (ii) a distribution-free confidence interval for weighted quantiles in the spirit of Wilks’ method, and (iii) confidence bounds for the weighted expected shortfall.
+
+## Objective
+Let $(X,W)$ be a random variable taking values in $ \mathbb R \times (0,+\infty)$. {We assume that $W$ is positive and integrable: $\mathbb E[W]<+\infty$. 
+We are concerned with deriving a confidence region of a vector of  $W$-weighted quantile of $X$
+```math
+q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1{X\leq x}]}{\mathbb E[W]} \geq \alpha_k}
+```
+of quantile levels $\alpha_k\in (0,1)^K$.
 
 ## Data
 Consider simulated data based on the use of a bivariate Gumbel copula:
 ```math
     C(u, v) = \exp\left[-\left\{(\log 1/u)^\theta + (\log 1/v)^\theta\right\}^{1/\theta}\right], \quad (u,v)\in(0,1]^2,\quad \theta>0,
 ```
-where the two margins of $X\in\mathbb R$ and $W\in\mathbb R^+$ are chosen in `simulation/DICT_SCENARIOS`
+where the two margins of $X$ and $W$ are chosen in `simulation/DICT_SCENARIOS`
 ```
 DICT_SCENARIOS = {
     1: [st.burr12(c=1/0.3, d=1), st.burr12(c=1/0.3, d=1)], 
