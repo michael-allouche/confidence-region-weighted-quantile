@@ -2,14 +2,6 @@
 Implementation of the paper **Confidence Regions for Weighted Quantiles** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
 
-
-<p align="center">
-  <img src="imgs/dist_erros_a1-50_a1-90_scenario-1_side-left.jpg" alt="Distribution errors" style="width:70%;">
-</p>
-
-Distribution of the errors between the real quantiles and the estimated confidence
-bounds for $`K=2`$ risk levels $`\alpha_1=0.5`$ and $`\alpha_2=0.9`$ on simulated data. 
-
 ## Abstract
 Quantiles are fundamental tools in statistics and risk analysis. While asymptotic and finite-sample results for standard 
 empirical quantiles are well established, analogous results for weighted quantiles remain scarce. In this paper, we establish 
@@ -25,6 +17,14 @@ We are concerned with deriving a confidence region of a vector of  $`W`$-weighte
 q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k},
 ```
 for quantile levels $`\alpha_k\in (0,1)^K`$.
+
+<p align="center">
+  <img src="imgs/dist_erros_a1-50_a1-90_scenario-1_side-left.jpg" alt="Distribution errors" style="width:70%;">
+</p>
+
+Distribution of the errors between the real weighted quantiles and the estimated confidence
+bounds for $`K=2`$ risk levels $`\alpha_1=0.5`$ and $`\alpha_2=0.9`$ on simulated data. 
+
 
 ## Data
 Consider simulated data based on the use of a bivariate Gumbel copula:
