@@ -11,12 +11,12 @@ perturbed weighted quantiles. This result yields, as corollaries, (i) a multivar
 bounds for the weighted expected shortfall.
 
 ## Objective
-Let $`(X,W)`$ be a random variable taking values in $`\mathbb R \times (0,+\infty)`$. {We assume that $`W`$ is positive and integrable: $`\mathbb E[W]<+\infty`$. 
+Let $`(X,W)`$ be a random variable taking values in $`\mathbb R \times (0,+\infty)`$. We assume that $`W`$ is positive and integrable: $`\mathbb E[W]<+\infty`$. 
 We are concerned with deriving a confidence region of a vector of  $`W`$-weighted quantile of $`X`$
 ```math
 q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k},
 ```
-for quantile levels $`\alpha_k\in (0,1)^K`$.
+for quantile levels $`\alpha_k\in (0,1)^K, \, 1\leq k\leq K`$.
 
 <p align="center">
   <img src="imgs/dist_erros_a1-50_a1-90_scenario-1_side-left.jpg" alt="Distribution errors" style="width:70%;">
