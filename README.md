@@ -58,7 +58,7 @@ ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha=0.99, eta=0.99)
 ```
 and 
 ```
-ci_left, ci_right, esW_hat = confidence_interval_esW(X, W, alpha=0.95, eta=0.99)
+ci_left, ci_right, esW_hat = confidence_interval_esW(X, W, alpha=0.95, eta=0.95, s=3)
 ```
 where `alpha` is the risk level and `eta` is the confidence level. 
 
@@ -66,3 +66,7 @@ Fitting the confidence intervals for multiple replications with the `fit_ci()` m
 probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.75, 0.95\}`$ and $`\eta=0.99`$:
 
 ![f2](imgs/coverage_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
+
+ and for the **weighted expected shortfall** with $`\alpha\in\{0.5, 0.8, 0.9, 0.95\}`$ and $`\eta=0.99`$:
+ 
+![f4](imgs/coverage_esW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
