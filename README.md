@@ -23,7 +23,7 @@ for quantile levels $`\alpha_k\in (0,1)^K`$.
 </p>
 
 Distribution of the errors between the real weighted quantiles and the estimated confidence
-bounds for $`K=2`$ risk levels $`\alpha_1=0.5`$ and $`\alpha_2=0.9`$ on simulated data. 
+bounds for $`K=2`$ risk levels $`\alpha_1=0.5`$ and $`\alpha_2=0.9`$ based on simulated data. 
 
 
 ## Data
@@ -66,7 +66,3 @@ Fitting the confidence intervals for multiple replications with the `fit_ci()` m
 probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.75, 0.95\}`$ and $`\eta=0.99`$:
 
 ![f2](imgs/coverage_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
-
-and for the **weighted expected shortfall** with $`\alpha\in\{0.8, 0.9, 0.95, 0.975\}`$ and $`\eta=0.99`$:
-
-![f3](imgs/coverage_esW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
