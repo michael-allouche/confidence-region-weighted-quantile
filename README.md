@@ -14,7 +14,7 @@ bounds for the weighted expected shortfall.
 Let $`(X,W)`$ be a random variable taking values in $`\mathbb R \times (0,+\infty)`$. We assume that $`W`$ is positive and integrable: $`\mathbb E[W]<+\infty`$. 
 We are concerned with deriving a confidence region of a vector of  $`W`$-weighted quantile of $`X`$
 ```math
-q_W(\alpha_k) :=  \inf\set{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k},
+q_W(\alpha_k) :=  \inf\{x\in \mathbb R : \frac{\mathbb E[W\cdot \mathbb 1\{X\leq x\}]}{\mathbb E[W]} \geq \alpha_k\},
 ```
 for quantile levels $`\alpha_k\in (0,1)^K, \, 1\leq k\leq K`$.
 
@@ -53,15 +53,15 @@ X, W = data_simulation(scenario=1, n=10000, theta=2)
 ## Wilks-type method
 Based on Theorem 2.3, a data driven confidence interval at confidence level $\eta$ for the weighted quantile  $q_{\tt W}(\alpha)$ is
 
-$$
+```math
     \hat I_{n,\eta}:=\Big[\widehat{q_{{\tt W},n}}(\alpha^-_{n,\eta}),\, \widehat{q_{{\tt W},n}}(\alpha^+_{n,\eta})\Big],
-$$
- with the translated risk levels $\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0 $ and $\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1 $, and
+```
+ with the translated risk levels $\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0$ and $\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1 $, and
 
-$$
-        c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
-        \gamma^{\downarrow,n}=\gamma^{\uparrow,n} := \frac{\hat\sigma_n}{\frac 1n\sum_{i=1}^n W_i}, \quad {\hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat{q_{{\tt W},n}}(\alpha)}\right)^2}.}
-$$
+```math
+    c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
+    \gamma^{\downarrow,n}=\gamma^{\uparrow,n} := \frac{\hat\sigma_n}{\frac 1n\sum_{i=1}^n W_i}, \quad {\hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat{q_{{\tt W},n}}(\alpha)}\right)^2}.}
+```
 
 The confidence interval is computed from the function `models.py`with
 ```
@@ -77,14 +77,14 @@ probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.7
 ## Density plug-in method
 A proposed extension of the simulation study is to compare our proposed Wilks-based confidence interval estimator of the weighted quantile with a density plug-in competitor based on the CLT derived in Theorem 2.1.
 Based on this result, one can derive an empirical density-based confidence interval
-$$
+```math
     \hat I^{\rm D}_{n,\eta,h} := [\widehat{q_{{\tt W},n}}(\alpha) - \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta, \widehat {q_{{\tt W},n}}(\alpha) + \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta]
-$$
+```
 
 with
-$$
+```math
 \hat S_{n,h} := \frac{\hat\sigma_n}{\frac{1}{n}\sum_{i=1}^n W_i\hat f_{{\tt W},n,h}(\widehat {q_{{\tt W},n}}(\alpha))}, \qquad \hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat {q_{{\tt W},n}}(\alpha)}\right)^2},
-$$
+```
 the empirical counterpart of the standard-deviation and 
 $$\hat f_{{\tt W},n,h}(x) := \frac{1}{h\sqrt{2\pi}}\sum_{i=1}^n \omega_i\exp\left(-\frac{(X_i-x)^2}{2h^2}\right),$$
 a kernel density estimator using a Gaussian kernel, normalized weights $\{\omega_i=W_i/\sum_{j=1}^nW_j\}_{i=1}^n$ and a bandwidth $h>0$. 
