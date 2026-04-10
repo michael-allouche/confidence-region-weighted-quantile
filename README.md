@@ -1,5 +1,5 @@
 # confidence-region-weighted-quantile
-Implementation of the paper **[Confidence Regions for Weighted Quantiles](https://hal.sorbonne-universite.fr/hal-05391451v2)** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
+Implementation of the paper **[Confidence Regions for Weighted Quantiles](https://hal.science/hal-05391451v3/document)** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
 
 # Abstract
@@ -56,7 +56,7 @@ Based on Theorem 2.3, a data driven confidence interval at confidence level $`\e
 ```math
     \hat I_{n,\eta}:=\Big[\widehat{q_{{\tt W},n}}(\alpha^-_{n,\eta}),\, \widehat{q_{{\tt W},n}}(\alpha^+_{n,\eta})\Big],
 ```
- with the translated risk levels $`\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0`$ and $`\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1`$, and
+ with the translated risk levels $`\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0`$, $`\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1`$, and
 
 ```math
     c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
