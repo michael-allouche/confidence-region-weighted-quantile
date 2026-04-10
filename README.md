@@ -32,7 +32,7 @@ Consider simulated data based on the use of a bivariate Gumbel copula:
     C(u, v) = \exp\left[-\left\{(\log 1/u)^\theta + (\log 1/v)^\theta\right\}^{1/\theta}\right], \quad (u,v)\in(0,1]^2,\quad \theta>0,
 ```
 where the two margins of $`X`$ and $`W`$ are chosen in `simulation/DICT_SCENARIOS` (see Table 1)
-```
+```python
 DICT_SCENARIOS = {
     1: [st.burr12(c=1/0.3, d=1), st.burr12(c=1/0.3, d=1)], 
     2: [st.laplace(loc=0, scale=1), st.burr12(c=1/0.3, d=1)],
@@ -43,7 +43,7 @@ DICT_SCENARIOS = {
 }
 ```
 and where the dependence structure is modeled with a fixed $`\theta=2`$:
-```
+```python
 from simulation import data_simulation
 X, W = data_simulation(scenario=1, n=10000, theta=2)
 ```
@@ -64,7 +64,7 @@ Based on Theorem 2.3, a data driven confidence interval at confidence level $\et
 ```
 
 The confidence interval is computed from the function `models.py`with
-```
+```python
 ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha, eta)
 ```
 
@@ -90,7 +90,7 @@ $$\hat f_{{\tt W},n,h}(x) := \frac{1}{h\sqrt{2\pi}}\sum_{i=1}^n \omega_i\exp\lef
 a kernel density estimator using a Gaussian kernel, normalized weights $\{\omega_i=W_i/\sum_{j=1}^nW_j\}_{i=1}^n$ and a bandwidth $h>0$. 
 
 The confidence interval is computed from the function `models.py`with
-```
+```python
 ci_left, ci_right, qW_hat = confidence_interval_qW_density(X_samples, W_samples, alpha, eta)
 ```
 
@@ -107,7 +107,7 @@ coverage probabilities for all risk levels and sample size considered.
 # Coverage Probability - Expected Shortfall
 The confidence interval for the weighted expected shortfall (cf Theorem 2.5) is computed
 from the function `models.py`with
-```
+```python
 ci_left, ci_right, esW_hat = confidence_interval_esW(X, W, alpha, eta)
 ```
 Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain the coverage 
@@ -117,7 +117,7 @@ probability for the **weighted expected shortfall** with $`\alpha\in\{0.5, 0.8, 
 
 
 # Cite
-```
+```bibtex
 @article{allouche2025confidence,
   title={Confidence regions for weighted quantiles},
   author={Allouche, Micha{\"e}l and Gobet, Emmanuel},
