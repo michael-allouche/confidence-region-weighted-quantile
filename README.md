@@ -51,12 +51,12 @@ X, W = data_simulation(scenario=1, n=10000, theta=2)
 
 # Coverage Probability - Weighted Quantile
 ## Wilks-type method
-Based on Theorem 2.3, a data driven confidence interval at confidence level $\eta$ for the weighted quantile  $q_{\tt W}(\alpha)$ is
+Based on Theorem 2.3, a data driven confidence interval at confidence level $`\eta`$ for the weighted quantile  $`q_{\tt W}(\alpha)`$ is
 
 ```math
     \hat I_{n,\eta}:=\Big[\widehat{q_{{\tt W},n}}(\alpha^-_{n,\eta}),\, \widehat{q_{{\tt W},n}}(\alpha^+_{n,\eta})\Big],
 ```
- with the translated risk levels $`\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0`$ and $`\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1$, and
+ with the translated risk levels $`\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0`$ and $`\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1`$, and
 
 ```math
     c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
@@ -80,7 +80,6 @@ Based on this result, one can derive an empirical density-based confidence inter
 ```math
     \hat I^{\rm D}_{n,\eta,h} := [\widehat{q_{{\tt W},n}}(\alpha) - \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta, \widehat {q_{{\tt W},n}}(\alpha) + \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta]
 ```
-
 with
 ```math
 \hat S_{n,h} := \frac{\hat\sigma_n}{\frac{1}{n}\sum_{i=1}^n W_i\hat f_{{\tt W},n,h}(\widehat {q_{{\tt W},n}}(\alpha))}, \qquad \hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat {q_{{\tt W},n}}(\alpha)}\right)^2},
