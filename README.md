@@ -1,8 +1,10 @@
 # confidence-region-weighted-quantile
 Implementation of the paper **[Confidence Regions for Weighted Quantiles](https://hal.science/hal-05391451v3/document)** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
+## 📓 Notebook
+See [`confidence_region_WQ.ipynb`](confidence_region_WQ.ipynb) for a complete walkthrough with visualizations.
 
-# Abstract
+## Abstract
 Quantiles are fundamental tools in statistics and risk analysis. While asymptotic and finite-sample results for standard 
 empirical quantiles are well established, analogous results for weighted quantiles remain scarce. In this paper, we establish 
 a comprehensive asymptotic theory for weighted quantiles. We derive a multivariate central limit theorem for multiple 
@@ -10,7 +12,7 @@ perturbed weighted quantiles. This result yields, as corollaries, (i) a multivar
 (ii) a distribution-free confidence interval for weighted quantiles in the spirit of Wilks’ method, and (iii) confidence 
 bounds for the weighted expected shortfall.
 
-# Objective
+## Objective
 Let $`(X,W)`$ be a random variable taking values in $`\mathbb R \times (0,+\infty)`$. We assume that $`W`$ is positive and integrable: $`\mathbb E[W]<+\infty`$. 
 We are concerned with deriving a confidence region of a vector of  $`W`$-weighted quantile of $`X`$
 ```math
@@ -26,7 +28,7 @@ Distribution of the errors between the real weighted quantiles and the estimated
 bounds for $`K=2`$ risk levels $`\alpha_1=0.5`$ and $`\alpha_2=0.9`$ based on simulated data. 
 
 
-# Data
+## Data
 Consider simulated data based on the use of a bivariate Gumbel copula:
 ```math
     C(u, v) = \exp\left[-\left\{(\log 1/u)^\theta + (\log 1/v)^\theta\right\}^{1/\theta}\right], \quad (u,v)\in(0,1]^2,\quad \theta>0,
@@ -49,8 +51,8 @@ X, W = data_simulation(scenario=1, n=10000, theta=2)
 ```
 ![f1](imgs/data.jpg)
 
-# Coverage Probability - Weighted Quantile
-## Wilks-type method
+## Coverage Probability - Weighted Quantile
+### Wilks-type method
 Based on Theorem 2.3, a data driven confidence interval at confidence level $`\eta`$ for the weighted quantile  $`q_{\tt W}(\alpha)`$ is
 
 ```math
@@ -65,7 +67,9 @@ Based on Theorem 2.3, a data driven confidence interval at confidence level $`\e
 
 The confidence interval is computed from the function `models.py`with
 ```python
-ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha, eta)
+from models import confidence_interval_qW
+ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha=0.5, eta=0.95)
+print(f"95% CI: [{ci_left}, {ci_right}]")
 ```
 
 Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain the coverage 
@@ -74,7 +78,7 @@ probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.7
 ![f2](imgs/coverage_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta95.jpg)
 
 
-## Density plug-in method
+### Density plug-in method
 A proposed extension of the simulation study is to compare our proposed Wilks-based confidence interval estimator of the weighted quantile with a density plug-in competitor based on the CLT derived in Theorem 2.1.
 Based on this result, one can derive an empirical density-based confidence interval
 ```math
@@ -105,7 +109,7 @@ The estimated confidence interval of our proposed method provides better
 coverage probabilities for all risk levels and sample size considered.
 
 
-# Coverage Probability - Expected Shortfall
+## Coverage Probability - Expected Shortfall
 The confidence interval for the weighted expected shortfall (cf Theorem 2.5) is computed
 from the function `models.py`with
 ```python
@@ -116,8 +120,13 @@ probability for the **weighted expected shortfall** with $`\alpha\in\{0.5, 0.8, 
 
 ![f4](imgs/coverage_esW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
 
+## Reproducibility
+All experiments from the paper can be reproduced using:
+- [`confidence_region_WQ.ipynb`](confidence_region_WQ.ipynb) - Main Notebook
+- `simulation.py` - Data generation
+- `models.py` - Estimation methods
 
-# Cite
+## Cite
 ```bibtex
 @article{allouche2025confidence,
   title={Confidence regions for weighted quantiles},
