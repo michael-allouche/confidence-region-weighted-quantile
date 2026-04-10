@@ -56,7 +56,7 @@ Based on Theorem 2.3, a data driven confidence interval at confidence level $\et
 ```math
     \hat I_{n,\eta}:=\Big[\widehat{q_{{\tt W},n}}(\alpha^-_{n,\eta}),\, \widehat{q_{{\tt W},n}}(\alpha^+_{n,\eta})\Big],
 ```
- with the translated risk levels $\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0$ and $\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1 $, and
+ with the translated risk levels $`\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0`$ and $`\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1$, and
 
 ```math
     c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
@@ -86,12 +86,14 @@ with
 \hat S_{n,h} := \frac{\hat\sigma_n}{\frac{1}{n}\sum_{i=1}^n W_i\hat f_{{\tt W},n,h}(\widehat {q_{{\tt W},n}}(\alpha))}, \qquad \hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat {q_{{\tt W},n}}(\alpha)}\right)^2},
 ```
 the empirical counterpart of the standard-deviation and 
-$$\hat f_{{\tt W},n,h}(x) := \frac{1}{h\sqrt{2\pi}}\sum_{i=1}^n \omega_i\exp\left(-\frac{(X_i-x)^2}{2h^2}\right),$$
-a kernel density estimator using a Gaussian kernel, normalized weights $\{\omega_i=W_i/\sum_{j=1}^nW_j\}_{i=1}^n$ and a bandwidth $h>0$. 
+```math
+\hat f_{{\tt W},n,h}(x) := \frac{1}{h\sqrt{2\pi}}\sum_{i=1}^n \omega_i\exp\left(-\frac{(X_i-x)^2}{2h^2}\right),
+```
+a kernel density estimator using a Gaussian kernel, normalized weights $`\{\omega_i=W_i/\sum_{j=1}^nW_j\}_{i=1}^n`$ and a bandwidth $`h>0`$. 
 
 The confidence interval is computed from the function `models.py`with
 ```python
-ci_left, ci_right, qW_hat = confidence_interval_qW_density(X_samples, W_samples, alpha, eta)
+ci_left, ci_right, qW_hat = confidence_interval_qW_density(X, W, alpha, eta)
 ```
 
 Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain another coverage 
