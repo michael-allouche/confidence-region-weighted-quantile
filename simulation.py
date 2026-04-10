@@ -16,6 +16,7 @@ DICT_SCENARIOS = {
     6: [st.norm(loc=0, scale=1), st.lognorm(s=0.5)],
 }
 
+
 def data_simulation(scenario, n, theta, seed=123):
     if seed is not None:
         np.random.seed(scenario)

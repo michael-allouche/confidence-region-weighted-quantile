@@ -49,27 +49,72 @@ X, W = data_simulation(scenario=1, n=10000, theta=2)
 ```
 ![f1](imgs/data.jpg)
 
-# Coverage Probability
+# Coverage Probability - Weighted Quantile
+## Wilks-type method
+Based on Theorem 2.3, a data driven confidence interval at confidence level $\eta$ for the weighted quantile  $q_{\tt W}(\alpha)$ is
 
-The confidence interval for the univariate weighted quantile (cf Corollary 2.4) and the weighted expected shortfall (cf Corollary 2.6) are computed respectively
-from the function `models.py`with
+$$
+    \hat I_{n,\eta}:=\Big[\widehat{q_{{\tt W},n}}(\alpha^-_{n,\eta}),\, \widehat{q_{{\tt W},n}}(\alpha^+_{n,\eta})\Big],
+$$
+ with the translated risk levels $\alpha^-_{n,\eta} = (\alpha-\frac{\gamma^{\downarrow,n} }{\sqrt n}c_\eta)\vee 0 $ and $\alpha^+_{n,\eta} = (\alpha+\frac{\gamma^{\uparrow,n}}{\sqrt n} c_\eta)\wedge 1 $, and
+
+$$
+        c_\eta:=\Phi^{-1}(1-\frac{1-\eta}{2}), \quad
+        \gamma^{\downarrow,n}=\gamma^{\uparrow,n} := \frac{\hat\sigma_n}{\frac 1n\sum_{i=1}^n W_i}, \quad {\hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat{q_{{\tt W},n}}(\alpha)}\right)^2}.}
+$$
+
+The confidence interval is computed from the function `models.py`with
 ```
-ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha=0.99, eta=0.99)
+ci_left, ci_right, qW_hat = confidence_interval_qW(X, W, alpha, eta)
 ```
-and 
-```
-ci_left, ci_right, esW_hat = confidence_interval_esW(X, W, alpha=0.95, eta=0.95, s=3)
-```
-where `alpha` is the risk level and `eta` is the confidence level. 
 
 Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain the coverage 
-probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.75, 0.95\}`$ and $`\eta=0.99`$:
+probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.75, 0.95\}`$, $`\eta=0.95`$ and $`n=1000`$:
 
-![f2](imgs/coverage_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
+![f2](imgs/coverage_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta95.jpg)
 
- and for the **weighted expected shortfall** with $`\alpha\in\{0.5, 0.8, 0.9, 0.95\}`$ and $`\eta=0.99`$:
- 
+
+## Density plug-in method
+A proposed extension of the simulation study is to compare our proposed Wilks-based confidence interval estimator of the weighted quantile with a density plug-in competitor based on the CLT derived in Theorem 2.1.
+Based on this result, one can derive an empirical density-based confidence interval
+$$
+    \hat I^{\rm D}_{n,\eta,h} := [\widehat{q_{{\tt W},n}}(\alpha) - \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta, \widehat {q_{{\tt W},n}}(\alpha) + \frac{\hat S_{n,h}}{\sqrt{n}}c_\eta]
+$$
+
+with
+$$
+\hat S_{n,h} := \frac{\hat\sigma_n}{\frac{1}{n}\sum_{i=1}^n W_i\hat f_{{\tt W},n,h}(\widehat {q_{{\tt W},n}}(\alpha))}, \qquad \hat\sigma_n:=\sqrt{\frac{1}{n }\sum_{i=1}^nW_i^2\left(\alpha-\mathbb 1_{X_i\leq \widehat {q_{{\tt W},n}}(\alpha)}\right)^2},
+$$
+the empirical counterpart of the standard-deviation and 
+$$\hat f_{{\tt W},n,h}(x) := \frac{1}{h\sqrt{2\pi}}\sum_{i=1}^n \omega_i\exp\left(-\frac{(X_i-x)^2}{2h^2}\right),$$
+a kernel density estimator using a Gaussian kernel, normalized weights $\{\omega_i=W_i/\sum_{j=1}^nW_j\}_{i=1}^n$ and a bandwidth $h>0$. 
+
+The confidence interval is computed from the function `models.py`with
+```
+ci_left, ci_right, qW_hat = confidence_interval_qW_density(X_samples, W_samples, alpha, eta)
+```
+
+Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain another coverage 
+probability for the **weighted quantile** with $`\alpha\in\{0.05, 0.25, 0.5, 0.75, 0.95\}`$, $`\eta=0.95`$ and $`n=1000`$:
+
+![f2](imgs/coverage_density_qW_nreal10000000_nrep10000_nsamp1000_theta2_eta95.jpg)
+
+
+The estimated confidence interval of our proposed method provides better
+coverage probabilities for all risk levels and sample size considered.
+
+
+# Coverage Probability - Expected Shortfall
+The confidence interval for the weighted expected shortfall (cf Theorem 2.5) is computed
+from the function `models.py`with
+```
+ci_left, ci_right, esW_hat = confidence_interval_esW(X, W, alpha, eta)
+```
+Fitting the confidence intervals for multiple replications with the `fit_ci()` method allows to obtain the coverage 
+probability for the **weighted expected shortfall** with $`\alpha\in\{0.5, 0.8, 0.9, 0.95\}`$ and $`\eta=0.99`$:
+
 ![f4](imgs/coverage_esW_nreal10000000_nrep10000_nsamp1000_theta2_eta99.jpg)
+
 
 # Cite
 ```
