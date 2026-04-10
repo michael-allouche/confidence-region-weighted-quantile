@@ -1,5 +1,5 @@
-# confidence-region-weighted-quantile
-Implementation of the paper **[Confidence Regions for Weighted Quantiles](https://hal.science/hal-05391451v3/document)** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
+# Wilks confidence regions for empirical weighted quantiles
+Implementation of the paper **[Wilks confidence regions for empirical weighted quantiles](https://hal.science/hal-05391451v3/document)** by Michaël Allouche and [Emmanuel Gobet](http://www.cmap.polytechnique.fr/~gobet/)
 
 ## 📓 Notebook
 See [`confidence_region_WQ.ipynb`](confidence_region_WQ.ipynb) for a complete walkthrough with visualizations.
