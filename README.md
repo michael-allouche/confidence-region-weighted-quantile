@@ -129,9 +129,15 @@ All experiments from the paper can be reproduced using:
 ## Cite
 ```bibtex
 @article{allouche2025confidence,
-  title={Confidence regions for weighted quantiles},
-  author={Allouche, Micha{\"e}l and Gobet, Emmanuel},
-  year={2025}
+title = {Wilks confidence regions for empirical weighted quantiles},
+journal = {Statistics & Probability Letters},
+volume = {236},
+pages = {110795},
+year = {2026},
+issn = {0167-7152},
+doi = {https://doi.org/10.1016/j.spl.2026.110795},
+url = {https://www.sciencedirect.com/science/article/pii/S0167715226001598},
+author = {M. Allouche and E. Gobet},
 }
 ```
 
